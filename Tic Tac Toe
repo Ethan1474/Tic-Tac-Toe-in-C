@@ -1,0 +1,161 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+bool game_status = true, turn_status = true;
+char array1[3] = {'-', '-', '-'}; //used for filler space for game board
+char array2[3] = {'-', '-', '-'};
+char array3[3] = {'-', '-', '-'};
+char filler_line[] = "---|---|---";
+
+void printGameBoard(){ //code to initialize the game board
+    printf("-=[ GAME ]=-\n");
+    printf(" %c | %c | %c\n", array1[0], array1[1], array1[2]);
+    printf("%s\n", filler_line);
+    printf(" %c | %c | %c\n", array2[0], array2[1], array2[2]);
+    printf("%s\n", filler_line);
+    printf(" %c | %c | %c\n", array3[0], array3[1], array3[2]);
+}
+
+void functionsGame(int x, int y, char player) { // defining valid moves
+    if (y == 1) {
+        if (array1[x - 1] == '-') {
+            array1[x - 1] = player;
+        } else {
+            printf("Error - Already taken!, turn skipped\n");
+        }
+    } else if (y == 2) {
+        if (array2[x - 1] == '-') {
+            array2[x - 1] = player;
+        } else {
+            printf("Error - Already taken!, turn skipped\n");
+        }
+    } else if (y == 3) {
+        if (array3[x - 1] == '-') {
+            array3[x - 1] = player;
+        } else {
+            printf("Error - Already taken!, turn skipped\n");
+        }
+    }
+}
+void userfunctionsGame(){ //defining valid inputs
+    int x, y;
+    printf("X axis (1,2,3)?\n");
+    scanf("%d", &x);
+    if(x >= 1 && x <= 3){
+        printf("Y axis (1,2,3)?\n");
+        scanf("%d", &y);
+        if(y >= 1 && y <= 3){
+            if(turn_status == true){
+                functionsGame(x, y, 'X');
+                printGameBoard();
+            }
+            else{
+                functionsGame(x, y, 'O');
+                printGameBoard();
+            }
+        }
+        else{
+            printf("Invalid Input - Please restart Program");
+            game_status = false;
+        }
+    }
+    else{
+        printf("Invalid Input - Please restart Program");
+        game_status = false;
+    }
+}
+void winner_check(){ //checking for winning scenarios and draw
+    if(array1[0] == 'X' && array1[1] == 'X' && array1[2] == 'X'){
+        printf("X is the Winner");
+        game_status = false;
+    }
+    else if(array2[0] == 'X' && array2[1] == 'X' && array2[2] == 'X'){
+        printf("X is the Winner");
+        game_status = false;
+}
+    else if(array3[0] == 'X' && array3[1] == 'X' && array3[2] == 'X'){
+        printf("X is the Winner");
+        game_status = false;
+    }
+    else if(array1[0] == 'X' && array2[0] == 'X' && array3[0] == 'X'){
+        printf("X is the Winner");
+        game_status = false;
+    }
+    else if(array1[1] == 'X' && array2[1] == 'X' && array3[1] == 'X'){
+        printf("X is the Winner");
+        game_status = false;
+    }
+    else if(array1[0] == 'X' && array2[0] == 'X' && array3[0] == 'X'){
+        printf("X is the Winner");
+        turn_status = false;
+    }
+    else if(array1[2] == 'X' && array2[2] == 'X' && array3[2] == 'X'){
+        printf("X is the Winner");
+        game_status = false;
+    }
+    else if(array1[0] == 'X' && array2[1] == 'X' && array3[2] == 'X'){
+        printf("X is the Winner");
+        game_status = false;
+    }
+    else if(array1[2] == 'X' && array2[1] == 'X' && array3[0] == 'X'){
+        printf("X is the Winner");
+        game_status = false;
+    }
+    else if(array1[0] == 'O' && array1[1] == 'O' && array1[2] == 'O'){
+        printf("O is the Winner");
+        game_status = false;
+    }
+    else if(array2[0] == 'O' && array2[1] == 'O' && array2[2] == 'O'){
+        printf("O is the Winner");
+        game_status = false;
+    }
+    else if(array3[0] == 'O' && array3[1] == 'O' && array3[2] == 'O'){
+        printf("O is the Winner");
+        game_status = false;
+    }
+    else if(array1[0] == 'O' && array2[0] == 'O' && array3[0] == 'O'){
+        printf("O is the Winner");
+        game_status = false;
+    }
+    else if(array1[1] == 'O' && array2[1] == 'O' && array3[1] == 'O'){
+        printf("O is the Winner");
+        game_status = false;
+    }
+    else if(array1[0] == 'O' && array2[0] == 'O' && array3[0] == 'O'){
+        printf("O is the Winner");
+        turn_status = false;
+    }
+    else if(array1[2] == 'O' && array2[2] == 'O' && array3[2] == 'O'){
+        printf("O is the Winner");
+        game_status = false;
+    }
+    else if(array1[0] == 'O' && array2[1] == 'O' && array3[2] == 'O'){
+        printf("O is the Winner");
+        game_status = false;
+    }
+    else if(array1[2] == 'O' && array2[1] == 'O' && array3[0] == 'O'){
+        printf("O is the Winner");
+        game_status = false;
+    }
+    else if(array1[0] == 'X' || array1[0] == 'O' , array2[0] == 'X' || array2[0] == 'O',array3[0] == 'X' || array3[0] == 'O', array1[1] == 'X' || array1[1] == 'O' , array2[1] == 'X' || array2[1] == 'O',array3[1] == 'X' || array3[1] == 'O',array1[2] == 'X' || array1[2] == 'O' , array2[2] == 'X' || array2[2] == 'O'){
+        printf("Draw");
+        game_status = false;
+    }
+}
+int main(){ //turn phase start
+    while(game_status){
+        if(turn_status == true){
+            printf("[ It is X's turn now ]\n");
+            userfunctionsGame();
+            printf("%d\n", turn_status);
+            turn_status = false;
+        }
+        else{
+            printf("[ It is O's turn now ]\n");
+            userfunctionsGame();
+            turn_status = true;
+        }
+        winner_check();
+    }
+    return 0;
+}
